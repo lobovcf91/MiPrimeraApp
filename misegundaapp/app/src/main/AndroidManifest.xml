@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Segunda_activity" />
+        <activity android:name=".tercera" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

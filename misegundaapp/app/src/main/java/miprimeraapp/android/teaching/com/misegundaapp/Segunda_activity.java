@@ -2,20 +2,26 @@ package miprimeraapp.android.teaching.com.misegundaapp;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class Segunda_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Log.d("MainActivity", "onCreate");
+        setContentView(R.layout.activity_segunda_activity);
+        Intent segunda = getIntent();
+        String paco = segunda.getStringExtra("Paco");//"VALOR DE PACO"
+        int dinero= getIntent().getIntExtra("dinero", 0); //200
+        Log.d("Segunda_activity", "El extra 'Paco' vale" + paco);
+        Log.d("Segunda_activity", "El extra 'dinero' vale" + dinero);
+
     }
+
+
 
     @Override
     protected void onStart() {
@@ -50,22 +56,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d("MainActivity","onRestart gato");
+        Log.d("MainActivity", "onRestart gato");
     }
 
     public void onClick(View view){
-        Intent segunda= new Intent(this,Segunda_activity.class);
-        segunda.putExtra("Paco","VALOR DE PACO");
-        segunda.putExtra("manolo", "300");
-        startActivity(segunda);
+        Intent google = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("https://www.google.com"));
+        startActivity(google);
     }
-    public void tercera(View view){
-        Intent tercera= new Intent(this,tercera.class);
-        startActivity(tercera);
+    public void llamarme(View view){
+        Intent llamar = new Intent(Intent.ACTION_DIAL,
+                Uri.parse("tel:1234"));
+        startActivity(llamar);
     }
-    public void profile(View view){
-        Intent profile= new Intent(this,ProfileActivity.class);
-        startActivity(profile);
-    }
+
+
+
 
 }

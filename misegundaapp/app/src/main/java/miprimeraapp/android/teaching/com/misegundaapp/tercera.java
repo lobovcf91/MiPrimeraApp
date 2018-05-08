@@ -2,22 +2,18 @@ package miprimeraapp.android.teaching.com.misegundaapp;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class tercera extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Log.d("MainActivity", "onCreate");
+        setContentView(R.layout.activity_tercera);
     }
-
-    @Override
     protected void onStart() {
         super.onStart();
         Log.d("MainActivity","onStart gato");
@@ -50,22 +46,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d("MainActivity","onRestart gato");
+        Log.d("MainActivity", "onRestart gato");
     }
 
     public void onClick(View view){
-        Intent segunda= new Intent(this,Segunda_activity.class);
-        segunda.putExtra("Paco","VALOR DE PACO");
-        segunda.putExtra("manolo", "300");
-        startActivity(segunda);
+        Intent google = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("https://www.youtube.com/?hl=es&gl=ES"));
+        startActivity(google);
     }
-    public void tercera(View view){
-        Intent tercera= new Intent(this,tercera.class);
+    public void segunda(View view){
+        Intent tercera= new Intent(this,Segunda_activity.class);
         startActivity(tercera);
     }
-    public void profile(View view){
-        Intent profile= new Intent(this,ProfileActivity.class);
-        startActivity(profile);
-    }
-
 }
