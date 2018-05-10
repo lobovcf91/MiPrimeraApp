@@ -8,14 +8,12 @@
     android:background="@color/colorfondo"
     tools:context=".MainActivity">
 
+
     <Button
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:gravity="end"
         android:onClick="onClick"
         android:text="Abrir segunda Activity"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,10 +29,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:onClick="tercera"
         android:text="Abrir tercera Activity"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,10 +44,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:onClick="profile"
         android:text="abrir profile activity"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,10 +61,6 @@
         android:id="@+id/imageView2"
         android:layout_width="129dp"
         android:layout_height="127dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.261"
@@ -82,5 +68,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.915"
         app:srcCompat="@mipmap/ic_launcher" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="login"
+        android:text="login" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="fondos"
+        android:text="fondos" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="lista"
+        android:text="lista" />
+
 
 </LinearLayout>

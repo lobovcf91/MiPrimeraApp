@@ -7,4 +7,6 @@
     <color name="colorfondosegunda">#40ff5d</color>
     <color name="colorfondotercera">#4079ff</color>
     <color name="username">#f73606</color>
+    <color name="naranja">#f1f78306</color>
+    <color name="crash">#f1212120</color>
 </resources>

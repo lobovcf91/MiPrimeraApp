@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("MainActivity", "onCreate");
+      //  Toolbar myToolbar = findViewById(R.id.toolbar);
+
+        //getSupportActianbar(.setTitle(R.string email)
     }
 
     @Override
@@ -66,6 +70,18 @@ public class MainActivity extends AppCompatActivity {
     public void profile(View view){
         Intent profile= new Intent(this,ProfileActivity.class);
         startActivity(profile);
+    }
+    public void login(View view){
+        Intent login= new Intent(this,loginprofile.class);
+        startActivity(login);
+    }
+    public void fondos(View view){
+        Intent fondos= new Intent(this,Gallery.class);
+        startActivity(fondos);
+    }
+    public void lista(View view){
+        Intent lista= new Intent(this,lista.class);
+        startActivity(lista);
     }
 
 }

@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">rachet</string>
-    <string name="username">rachet</string>
+    <string name="username">username</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="age">age</string>
+    <string name="genero">genero</string>
+    <string name="username_error">no puede estar vacio</string>
+    <string name="password_error">la contraseña no puede estar vacia</string>
+
+
 </resources>

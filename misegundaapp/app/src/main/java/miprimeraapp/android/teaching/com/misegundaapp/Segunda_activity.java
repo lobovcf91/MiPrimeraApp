@@ -60,6 +60,7 @@ public class Segunda_activity extends AppCompatActivity {
     }
 
     public void onClick(View view){
+        
         Intent google = new Intent(Intent.ACTION_VIEW,
                 Uri.parse("https://www.google.com"));
         startActivity(google);
