@@ -90,5 +90,19 @@
         android:onClick="lista"
         android:text="lista" />
 
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="fragment"
+        android:text="fragment" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="fornite"
+        android:text="fornite" />
+
 
 </LinearLayout>

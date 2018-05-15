@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="?attr/colorPrimary"
+        android:background="#2516f4"
+        app:title="AQUI TU TE LOGEAS Y PUNTO"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 

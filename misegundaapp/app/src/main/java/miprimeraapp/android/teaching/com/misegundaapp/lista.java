@@ -1,5 +1,6 @@
 package miprimeraapp.android.teaching.com.misegundaapp;
 
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -23,10 +24,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import Interactors.GamesInteractor;
+
 public class lista extends AppCompatActivity {
 
-    String[] juegos = {"Spyro", "crash", "rachet", "Valencia"};
-    int[] gameIcons = {R.drawable.spyro, R.drawable.crash, R.drawable.rachet, R.drawable.valencia};
+    String[] juegos = {"Spyro", "Malaga", "rachet", "Valencia", "Fornite"};
+    int[] gameIcons = {R.drawable.spyro, R.drawable.malagaicono, R.drawable.rachet, R.drawable.valencia, R.drawable.forniteicono};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,10 @@ public class lista extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(lista.this, "Seleccionada posición " + position,
                         Toast.LENGTH_LONG).show();
+                //abrir pantalla de detalle
+                Intent intent = new Intent (lista.this, GameDetailActivity.class);
+                intent.putExtra("position", position);
+                startActivity(intent);
             }
         });
 
@@ -103,6 +110,11 @@ public class lista extends AppCompatActivity {
                 textView.setTextColor(getColor(R.color.crash));
                 textView.setAllCaps(true);
             }
+            if (position == 4) {
+                textView.setTextSize(10);
+                textView.setTextColor(getColor(R.color.crash));
+                textView.setAllCaps(true);
+            }
 
             return rowView;
         }
@@ -119,7 +131,7 @@ public class lista extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent login = new Intent(this,loginprofile.class);
         startActivity(login);
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
 

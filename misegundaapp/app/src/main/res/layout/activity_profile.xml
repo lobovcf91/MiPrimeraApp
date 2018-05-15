@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="?attr/actionBarTheme"
+        app:title="Profile"/>
 
     <TextView
         style="@style/labels"
@@ -123,6 +124,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@android:drawable/ic_delete"
+            android:onClick="borrar"
+
             android:text="delete" />
 
     </LinearLayout>

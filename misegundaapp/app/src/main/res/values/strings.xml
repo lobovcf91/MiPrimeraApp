@@ -8,5 +8,15 @@
     <string name="username_error">no puede estar vacio</string>
     <string name="password_error">la contraseña no puede estar vacia</string>
 
+    //dialogos
+    <string name="si">si</string>
+    <string name="no">no</string>
+    <string name="cancelar">cancelar</string>
+    <string name="dialogo">Estas seguro de querer borrar este usuario</string>
+    <string name="titulo">confirmacion</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

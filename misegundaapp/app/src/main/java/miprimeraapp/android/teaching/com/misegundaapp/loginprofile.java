@@ -57,9 +57,9 @@ public class loginprofile extends AppCompatActivity {
         usernameEditex.setText("");
         passwordEditex.setText("");
     }
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
+ //   public boolean onCreateOptionsMenu(Menu menu) {
+  //      MenuInflater inflater = getMenuInflater();
+    //    inflater.inflate(R.menu.menu, menu);
+   //     return true;
+   // }
 }

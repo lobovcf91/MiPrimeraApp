@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:title="valencia"
+    <item android:id="@+id/valencia"
+        android:title="valencia"
         android:icon="@drawable/valenciacficono"
         app:showAsAction="ifRoom"/>
 

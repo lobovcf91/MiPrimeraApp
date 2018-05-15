@@ -18,14 +18,19 @@
         </activity>
         <activity android:name=".Segunda_activity" />
         <activity android:name=".tercera" />
-        <activity android:name=".lista"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".ProfileActivity"
-            android:parentActivityName=".loginprofile"/>
-        <activity android:name=".loginprofile"
-            android:parentActivityName=".lista"/>
+        <activity
+            android:name=".lista"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ProfileActivity"
+            android:parentActivityName=".loginprofile" />
+        <activity
+            android:name=".loginprofile"
+            android:parentActivityName=".lista" />
         <activity android:name=".Gallery" />
-
+        <activity android:name=".FragmentTestActivity"></activity>
+        <activity android:name=".GameDetailActivity"
+            android:parentActivityName=".lista"></activity>
     </application>
 
 </manifest>

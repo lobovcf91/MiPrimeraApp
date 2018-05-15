@@ -84,4 +84,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(lista);
     }
 
+    public void fragment(View view){
+        Intent fragment= new Intent(this,FragmentTestActivity.class);
+        startActivity(fragment);
+    }
+
+    public void fornite(View view){
+        Intent fornite= new Intent(this,GameDetailActivity.class);
+        startActivity(fornite);
+    }
+
 }
