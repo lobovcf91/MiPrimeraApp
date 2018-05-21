@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toolbar;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("MainActivity", "onCreate");
+
+        File directorioInterno = getFilesDir();
+        File directorioCache = getCacheDir();
+       Log.d ("ListActivity", "Interno: " + directorioInterno.getAbsolutePath());
+        Log.d ("ListActivity", "Cache: " + directorioCache.getAbsolutePath());
+
+
       //  Toolbar myToolbar = findViewById(R.id.toolbar);
 
         //getSupportActianbar(.setTitle(R.string email)
@@ -92,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
     public void fornite(View view){
         Intent fornite= new Intent(this,GameDetailActivity.class);
         startActivity(fornite);
+    }
+    public void web(View view){
+        Intent web= new Intent(this,WebViewActivity.class);
+        startActivity(web);
     }
 
 }

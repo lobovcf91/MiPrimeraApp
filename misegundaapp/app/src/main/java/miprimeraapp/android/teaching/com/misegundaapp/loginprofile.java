@@ -1,6 +1,9 @@
 package miprimeraapp.android.teaching.com.misegundaapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +20,8 @@ public class loginprofile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginprofile);
         usernameEditex = findViewById(R.id.username2);
@@ -25,31 +30,53 @@ public class loginprofile extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.toolbar3);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        SharedPreferences sharedPref = getSharedPreferences(
+                getString(R.string.basic_preference_file),
+                Context.MODE_PRIVATE);
+        String savedUsername = sharedPref.getString("username_key","");
+        usernameEditex.setText(savedUsername);
+    }
 
-    public void Login(View view){
+    public void Login(View view) {
         //obtener valores
         String username = usernameEditex.getText().toString();
         String password = passwordEditex.getText().toString();
 
+
+
+
         if (TextUtils.isEmpty(username)) {
             //el campo username esta vacio
             usernameEditex.setError(getString(R.string.username_error));
-        }
-        else if (TextUtils.isEmpty(password))
-           passwordEditex.setError(getString(R.string.password_error));
+        } else if (TextUtils.isEmpty(password))
+            passwordEditex.setError(getString(R.string.password_error));
         else {
-            Intent Login = new Intent ( this, ProfileActivity.class);
+
+            //aqui es para cogerlo dps de ver si usuario y contraseña son correctas
+            SharedPreferences sharedPref = getSharedPreferences(
+                    getString(R.string.basic_preference_file),
+                    Context.MODE_PRIVATE);
+
+            SharedPreferences.Editor myEditor = sharedPref.edit();
+            myEditor.putString("username_key", username);
+            myEditor.apply();
+
+            Intent Login = new Intent(this, ProfileActivity.class);
             startActivity(Login);
         }
 
     }
 
 
-    public void profile(View view){
-        Intent profile= new Intent(this,ProfileActivity.class);
+    public void profile(View view) {
+        Intent profile = new Intent(this, ProfileActivity.class);
         startActivity(profile);
     }
 
@@ -57,9 +84,10 @@ public class loginprofile extends AppCompatActivity {
         usernameEditex.setText("");
         passwordEditex.setText("");
     }
- //   public boolean onCreateOptionsMenu(Menu menu) {
-  //      MenuInflater inflater = getMenuInflater();
+    //   public boolean onCreateOptionsMenu(Menu menu) {
+    //      MenuInflater inflater = getMenuInflater();
     //    inflater.inflate(R.menu.menu, menu);
-   //     return true;
-   // }
+    //     return true;
+    // }
+
 }

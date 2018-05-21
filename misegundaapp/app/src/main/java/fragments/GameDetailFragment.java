@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import Interactors.GamesInteractor;
 import miprimeraapp.android.teaching.com.misegundaapp.R;
+import miprimeraapp.android.teaching.com.misegundaapp.WebViewActivity;
 import model.GameModel;
 
 /**
@@ -25,13 +26,14 @@ public class GameDetailFragment extends Fragment {
     public GameDetailFragment() {
         // Required empty public constructor
     }
-// crear un fragment este parametro es para que coja el game id
-    public static GameDetailFragment newInstance(int gameId){
+
+    // crear un fragment este parametro es para que coja el game id
+    public static GameDetailFragment newInstance(int gameId) {
         GameDetailFragment fragment = new GameDetailFragment();
         Bundle myBundle = new Bundle();
         myBundle.putInt("gameId", gameId);
         fragment.setArguments(myBundle);
-        return  fragment;
+        return fragment;
 
     }
 
@@ -43,8 +45,8 @@ public class GameDetailFragment extends Fragment {
         View fragmentView = inflater.inflate(R.layout.fragment_game_detail, container, false);
 
         //Obtener game model de game interactor
-        int gameId = getArguments().getInt("gameId",0);
-        final GameModel game= new GamesInteractor().getGameWithId(gameId);
+        int gameId = getArguments().getInt("gameId", 0);
+        final GameModel game = new GamesInteractor().getGameWithId(gameId);
 
         // UPDATE VIEW WITH GAME MODEL DATA
         ImageView icono = fragmentView.findViewById(R.id.game_icon);
@@ -59,19 +61,21 @@ public class GameDetailFragment extends Fragment {
         descriptionTextview.setText(game.getDescription());
 
         //3 DEFINIR ACCION PARA EL BOTTON
-        Button boton =  fragmentView.findViewById(R.id.website_button);
+        Button boton = fragmentView.findViewById(R.id.website_button);
         boton.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
-                Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(game.getOfficialwebsiteurl()));
-                startActivity(webIntent);
+                Intent oficial = new Intent(getContext(), WebViewActivity.class);
+                oficial.putExtra("url", game.getOfficialwebsiteurl());
+                startActivity(oficial);
             }
         });
 
         return fragmentView;
-
-    }
     }
 
+
+}
 
