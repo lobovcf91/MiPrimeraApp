@@ -2,10 +2,14 @@ package miprimeraapp.android.teaching.com.misegundaapp;
 
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteConstraintException;
+import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,9 +21,12 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.Calendar;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -55,7 +62,7 @@ public class ProfileActivity extends AppCompatActivity {
                                         (DatePicker view, int year, int month, int dayOfMonth) {
                                     int anoActual = Calendar.getInstance().get(Calendar.YEAR);
                                     int edad = anoActual - year;
-                                    ageEditex.setText(dayOfMonth + "/" + (month+1) + "/" + year);
+                                    ageEditex.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                                 }
                             }, 1970, 1, 1).show();
 
@@ -69,8 +76,15 @@ public class ProfileActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //comprobar si existe el almacenamiento externo
-        Log.d ("ListActivity", "Escribir: " + isExternalStorageWritable());
-        Log.d ("ListActivity", "leer: " + isExternalStorageReadable());
+        Log.d("ListActivity", "Escribir: " + isExternalStorageWritable());
+        Log.d("ListActivity", "leer: " + isExternalStorageReadable());
+
+        //meter una imagen desde un directorio
+        File imgFile = new File(getExternalFilesDir(null), "valenciacficono.png");
+        if (imgFile.exists()) {
+            ImageView myImage = findViewById(R.id.iconovalenciacf);
+            myImage.setImageURI(Uri.fromFile(imgFile));
+        }
     }
 
     //con esto se ejecuta el click de save
@@ -87,11 +101,26 @@ public class ProfileActivity extends AppCompatActivity {
         } else if (radioButton2.isChecked()) {
             Log.d("ProfileActivity", "Gender:Female");
         }
+        //   Intent intent = new Intent(this, )
+// esto es para la base de datos para que ella obtenga la inf del usuario registrado .
+
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "miprimerabasedatos").allowMainThreadQueries().build();
+
+        user user = new user();
+        user.setUsername(usernameEditex.getText().toString());
+        user.setEmail(emailEditex.getText().toString());
+        user.setPassword(passwordEditex.getText().toString());
+        user.setAge(ageEditex.getText().toString());
+        try {
+            db.userDao().insert(user);
+        } catch (SQLiteConstraintException sqlmia) {
+           Toast.makeText(ProfileActivity.this, "lo siento este ya existe",Toast.LENGTH_LONG).show();
+
+        }
     }
 
     public void guardar(View view) {
         saveInternal();
-
 
 
     }
@@ -114,10 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
         String username = sharedPref.getString("Username", "");
         String email = sharedPref.getString("Email", "");
         String password = sharedPref.getString("Password", "");
-        int ageValue = sharedPref.getInt("Age", 0);
-        if (ageValue != -1) {
-            ageEditex.setText(ageValue + "");
-        }
+        String age = sharedPref.getString("Age", "");
         String genderValue = sharedPref.getString("gender_key", "");
         if (genderValue.equals("h")) {
             radioButton.setChecked(true);
@@ -147,23 +173,21 @@ public class ProfileActivity extends AppCompatActivity {
         TextView username2 = findViewById(R.id.username);
         TextView email2 = findViewById(R.id.email);
         TextView password2 = findViewById(R.id.password);
+        TextView age2 = findViewById(R.id.age);
 
         SharedPreferences.Editor myEditor = sharedPref.edit();
         myEditor.putString("Username", username2.getText().toString());
         myEditor.putString("Email", email2.getText().toString());
-        myEditor.putInt("Age", Integer.parseInt(ageEditex.getText().toString()));
+        myEditor.putString("Age", age2.getText().toString());
         myEditor.putString("Password", password2.getText().toString());
-        if (radioButton.isChecked()){
+        if (radioButton.isChecked()) {
             myEditor.putString("gender", "h");
-    }   else if (radioButton2.isChecked()){
+        } else if (radioButton2.isChecked()) {
             myEditor.putString("gender", "m");
         }
         myEditor.apply();
 
     }
-
-
-
 
 
     public void createSimpleDialog() {
@@ -199,10 +223,11 @@ public class ProfileActivity extends AppCompatActivity {
     public void borrar(View view) {
         createSimpleDialog();
     }
-//check if external storage availabel,  sirve para comprobar si el alma externo exitiste y esta pra escribir
-    public boolean isExternalStorageWritable(){
+
+    //check if external storage availabel,  sirve para comprobar si el alma externo exitiste y esta pra escribir
+    public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)){
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
             return true;
         }
         return false;
@@ -210,16 +235,14 @@ public class ProfileActivity extends AppCompatActivity {
 
 //si no podemos escribir comprobar almenos si existe y podemos leer
 
-    public boolean isExternalStorageReadable (){
+    public boolean isExternalStorageReadable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)||
-                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)){
+        if (Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
             return true;
         }
         return false;
     }
-
-
 
 
 }

@@ -1,5 +1,6 @@
 package miprimeraapp.android.teaching.com.misegundaapp;
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class loginprofile extends AppCompatActivity {
 
@@ -50,26 +52,39 @@ public class loginprofile extends AppCompatActivity {
         String password = passwordEditex.getText().toString();
 
 
-
-
         if (TextUtils.isEmpty(username)) {
             //el campo username esta vacio
             usernameEditex.setError(getString(R.string.username_error));
         } else if (TextUtils.isEmpty(password))
             passwordEditex.setError(getString(R.string.password_error));
         else {
+            //para logearme dps de registrarme con la base de datos
+            AppDatabase myDatabase= Room.databaseBuilder(getApplicationContext(),
+                    AppDatabase.class, "miprimerabasedatos")
+                    .allowMainThreadQueries()
+                    .build();
 
-            //aqui es para cogerlo dps de ver si usuario y contraseña son correctas
-            SharedPreferences sharedPref = getSharedPreferences(
-                    getString(R.string.basic_preference_file),
-                    Context.MODE_PRIVATE);
+            user retrieveduser = myDatabase.userDao().findByUsername(username);
+            if (retrieveduser ==null){
+                Toast.makeText(this,"no existe buscate la vida", Toast.LENGTH_LONG).show();
+            } else if (password.equals(retrieveduser.getPassword())){
+                //e exo login aqui
+                //aqui es para cogerlo dps de ver si usuario y contraseña son correctas
+                SharedPreferences sharedPref = getSharedPreferences(
+                        getString(R.string.basic_preference_file),
+                        Context.MODE_PRIVATE);
 
-            SharedPreferences.Editor myEditor = sharedPref.edit();
-            myEditor.putString("username_key", username);
-            myEditor.apply();
+                SharedPreferences.Editor myEditor = sharedPref.edit();
+                myEditor.putString("username_key", username);
+                myEditor.apply();
 
-            Intent Login = new Intent(this, ProfileActivity.class);
-            startActivity(Login);
+                Intent Login = new Intent(this, ProfileActivity.class);
+                startActivity(Login);
+
+            } else {
+                Toast.makeText(loginprofile.this, "acuestate",Toast.LENGTH_LONG).show();
+            }
+
         }
 
     }

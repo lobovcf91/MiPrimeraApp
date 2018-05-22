@@ -16,6 +16,13 @@
         android:theme="?attr/actionBarTheme"
         app:title="Profile"/>
 
+    <ImageView
+        android:id="@+id/iconovalenciacf"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        />
+
     <TextView
         style="@style/labels"
         android:layout_width="wrap_content"

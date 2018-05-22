@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
       //  Toolbar myToolbar = findViewById(R.id.toolbar);
 
         //getSupportActianbar(.setTitle(R.string email)
+
+        getExternalFilesDir(null);
     }
 
     @Override
