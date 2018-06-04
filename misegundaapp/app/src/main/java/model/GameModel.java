@@ -1,20 +1,26 @@
 package model;
 
+import com.android.volley.toolbox.StringRequest;
+
 public class GameModel {
     private int id;
     private String name;
     private String description;
     private String officialwebsiteurl;
-    private int iconoDrawable;
-    private int backgroundDrawable;
+    private String icon;
+    private String background;
 
-    public GameModel(int id, String name, String description, String officialwebsiteurl, int iconoDrawable, int backgroundDrawable) {
+    public GameModel(){
+
+    }
+
+    public GameModel(int id, String name, String description, String officialwebsiteurl, String icono, String background) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.officialwebsiteurl = officialwebsiteurl;
-        this.iconoDrawable = iconoDrawable;
-        this.backgroundDrawable = backgroundDrawable;
+        this.icon = icono;
+        this.background = background;
     }
 
     public int getId() {
@@ -49,20 +55,20 @@ public class GameModel {
         this.officialwebsiteurl = officialwebsiteurl;
     }
 
-    public int getIconoDrawable() {
-        return iconoDrawable;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setIconoDrawable(int iconoDrawable) {
-        this.iconoDrawable = iconoDrawable;
+    public void setIcon(String icono) {
+        this.icon = icono;
     }
 
-    public int getBackgroundDrawable() {
-        return backgroundDrawable;
+    public String getBackground() {
+        return background;
     }
 
-    public void setBackgroundDrawable(int backgroundDrawable) {
-        this.backgroundDrawable = backgroundDrawable;
+    public void setBackground(String background) {
+        this.background = background;
     }
 
 

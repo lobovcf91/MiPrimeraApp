@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -27,8 +27,10 @@
         tools:text="@android:string/autofill" />
 
     <Button
+        android:id="@+id/tercera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
         android:onClick="tercera"
         android:text="Abrir tercera Activity"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,8 +44,18 @@
         tools:text="@android:string/autofill" />
 
     <Button
+        android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tercera"
+        android:onClick="recycler"
+        android:text="Recycler" />
+
+    <Button
+        android:id="@+id/profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button8"
         android:onClick="profile"
         android:text="abrir profile activity"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -57,20 +69,9 @@
         tools:text="@android:string/autofill" />
 
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="129dp"
-        android:layout_height="127dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.261"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.915"
-        app:srcCompat="@mipmap/ic_launcher" />
-
     <Button
         android:id="@+id/button2"
+        android:layout_below="@+id/profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="login"
@@ -80,6 +81,7 @@
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
         android:onClick="fondos"
         android:text="fondos" />
 
@@ -87,6 +89,7 @@
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/button4"
         android:onClick="lista"
         android:text="lista" />
 
@@ -94,6 +97,7 @@
         android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/button3"
         android:onClick="fragment"
         android:text="fragment" />
 
@@ -101,6 +105,7 @@
         android:id="@+id/button7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/button5"
         android:onClick="fornite"
         android:text="fornite" />
 
@@ -108,8 +113,19 @@
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/button7"
         android:onClick="web"
         android:text="web" />
 
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button6"
+        android:layout_marginStart="105dp"
+        android:text="musica"
+        android:onClick="mussica"/>
 
-</LinearLayout>
+
+</RelativeLayout>

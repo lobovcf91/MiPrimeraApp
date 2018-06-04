@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text_view_view_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:textSize="17sp"
+    android:textStyle="italic"
+    android:background="@color/colorfondo"
+    android:text="esto es lo que hay"
+    android:textColor="@color/colorfondotercera"
+    tools:context=".view_holder_item">
+
+
+</TextView>

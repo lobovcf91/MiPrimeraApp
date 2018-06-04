@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1059810811950",
+    "firebase_url": "https://misegundaapp.firebaseio.com",
+    "project_id": "misegundaapp",
+    "storage_bucket": "misegundaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059810811950:android:870639a4ef5892a9",
+        "android_client_info": {
+          "package_name": "miprimeraapp.android.teaching.com.misegundaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059810811950-jhls08qns5d94ilskio6mkd4o4p9vs1v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "miprimeraapp.android.teaching.com.misegundaapp",
+            "certificate_hash": "a414b22f30ed9a5c550adf140b63530bd1189106"
+          }
+        },
+        {
+          "client_id": "1059810811950-f9fnfh1nkucs5b4bvrcojbbck6mmaei3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsGal7xdEkaRAmD4inGOPnQGZc_W-UPhY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059810811950-f9fnfh1nkucs5b4bvrcojbbck6mmaei3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

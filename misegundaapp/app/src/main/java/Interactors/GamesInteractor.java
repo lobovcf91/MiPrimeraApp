@@ -16,30 +16,30 @@ public class GamesInteractor {
 
         if (games == null) {
 
-            GameModel SpyroGameModel = new GameModel(0, "Spyro", "EL DRAGONSITO",
-                    "http://www.spyrothedragon.com/es",
-                    R.drawable.spyro, R.drawable.spyrofondo);
+            GameModel ValenciaGameModel = new GameModel(0, "Valencia_cf", "Valencia_cf",
+                    "www.valenciacf.com",
+                    "","");
             GameModel MalagacfGameModel = new GameModel(1, "Malaga_cf", "Descripcion Malaga_cf",
                     "https://www.malagacf.com/",
-                    R.drawable.malagaicono, R.drawable.malagacf);
-
-            GameModel rachetGameModel = new GameModel(2, "Rachet", "Rachet y clanc",
-                    "https://www.playstation.com/es-es/games/ratchet-and-clank-ps4/",
-                    R.drawable.rachet, R.drawable.rachetandclanck);
-            GameModel ValenciaGameModel = new GameModel(3, "Valencia_cf", "Descripcion Valencia_cf",
-                    "http://www.valenciacf.com/",
-                    R.drawable.valenciacficono, R.drawable.externas);
-            GameModel ForniteGameModel = new GameModel(4, "Fornite", "Descripcion Fornite",
-                    "http://www.epicgames.com/fortnite/es-ES/battle-pass/season-4",
-                    R.drawable.fornitelogo, R.drawable.fornite);
+                    "","");
+//
+//            GameModel BocaJuniorGameModel = new GameModel(2, "BocaJunior", "BocaJunior",
+  //                  "http://www.bocajuniors.com.ar/",
+    //                "","");
+      //      GameModel ValenciaGameModel = new GameModel(3, "Valencia_cf", "Descripcion Valencia_cf",
+        //            "http://www.valenciacf.com/",
+          //          "", "");
+          //  GameModel ManchesterUnitedGameModel = new GameModel(4, "ManchesterUnited", "ManchesterUnited",
+            //        "http://www.manutd.com/",
+           //        "", "");
 
 
             games = new ArrayList<>();
-            games.add(SpyroGameModel);
+    //        games.add(LiverpoolGameModel);
             games.add(MalagacfGameModel);
-            games.add(rachetGameModel);
+   //         games.add(BocaJuniorGameModel);
             games.add(ValenciaGameModel);
-            games.add(ForniteGameModel);
+     //       games.add(ManchesterUnitedGameModel);
         }
 
     }

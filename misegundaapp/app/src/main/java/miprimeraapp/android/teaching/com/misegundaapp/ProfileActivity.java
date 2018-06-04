@@ -9,8 +9,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteConstraintException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -80,12 +84,12 @@ public class ProfileActivity extends AppCompatActivity {
         Log.d("ListActivity", "leer: " + isExternalStorageReadable());
 
         //meter una imagen desde un directorio
-        File imgFile = new File(getExternalFilesDir(null), "valenciacficono.png");
-        if (imgFile.exists()) {
-            ImageView myImage = findViewById(R.id.iconovalenciacf);
-            myImage.setImageURI(Uri.fromFile(imgFile));
+ //       File imgFile = new File(getExternalFilesDir(null), "iconocamara.png");
+ //       if (imgFile.exists()) {
+//            ImageView myImage = findViewById(R.id.iconocamara);
+ //           myImage.setImageURI(Uri.fromFile(imgFile));
         }
-    }
+ //   }
 
     //con esto se ejecuta el click de save
 
@@ -114,7 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
         try {
             db.userDao().insert(user);
         } catch (SQLiteConstraintException sqlmia) {
-           Toast.makeText(ProfileActivity.this, "lo siento este ya existe",Toast.LENGTH_LONG).show();
+            Toast.makeText(ProfileActivity.this, "lo siento este ya existe", Toast.LENGTH_LONG).show();
 
         }
     }
@@ -140,26 +144,45 @@ public class ProfileActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences(
                 getString(R.string.basic_preference_file),
                 Context.MODE_PRIVATE);
-        String username = sharedPref.getString("Username", "");
-        String email = sharedPref.getString("Email", "");
-        String password = sharedPref.getString("Password", "");
-        String age = sharedPref.getString("Age", "");
-        String genderValue = sharedPref.getString("gender_key", "");
-        if (genderValue.equals("h")) {
-            radioButton.setChecked(true);
-        } else if (genderValue.equals("m")) {
-            radioButton2.setChecked(true);
+//con esto consigo que cuando me logeee me salga todos los datos dle logeado.
+        String usernameValue = sharedPref.getString("username_key", "");
+        AppDatabase myDatabase = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "miprimerabasedatos")
+                // con este de aqui hago el llamamientoa buscar en la base de datos
+                .allowMainThreadQueries()
+                .build();
+        user myUser = myDatabase.userDao().findByUsername(usernameValue);
+        if (myUser != null) {
+            usernameEditex.setText(myUser.getUsername());
+            emailEditex.setText(myUser.getEmail());
+            ageEditex.setText(myUser.getAge());
+            passwordEditex.setText(myUser.getPassword());
+            // con esto hago que lo busque en la base de datos.
+            String genderValue = myUser.getGender();
+            if (genderValue != null){
+                if (genderValue.equals("h")) {
+                    radioButton.setChecked(true);
+                } else if (genderValue.equals("m")) {
+                    radioButton2.setChecked(true);
+                }
+            }
+
         }
-
-        TextView username2 = findViewById(R.id.username);
-        TextView email2 = findViewById(R.id.email);
-        TextView password2 = findViewById(R.id.password);
-
-        username2.setText(username);
-        email2.setText(email);
-        password2.setText(password);
-
     }
+//cosas exa antes
+        //      String username = sharedPref.getString("Username", "");
+        //    String email = sharedPref.getString("Email", "");
+        //  String password = sharedPref.getString("Password", "");
+        // String age = sharedPref.getString("Age", "");
+        //      TextView username2 = findViewById(R.id.username);
+        //      TextView email2 = findViewById(R.id.email);
+        //     TextView password2 = findViewById(R.id.password);
+
+        //     username2.setText(username);
+        //      email2.setText(email);
+        //     password2.setText(password);
+
+
 
     @Override
     protected void onStop() {
@@ -245,7 +268,75 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
+
+public void camaraintent (View view){
+        //el usuario ha pulsado la imagen de perfil
+    //crear intent que llama a camara
+    Intent camaraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+    if (camaraIntent.resolveActivity(getPackageManager()) !=null) {
+        //esto de aqui de photofile es el nombre que le doi le puedo dar cualq otro
+        File photoFile = createImageFile();
+        Uri photoURI =
+                FileProvider.getUriForFile
+                        (this,
+                                "miprimeraapp.android.teaching.com.misegundaapp",
+                                photoFile);
+        camaraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+        startActivityForResult(camaraIntent, 100);
+    }
 }
+
+private File createImageFile () {
+        File storageDir =
+                //esta ruta es la externa publica
+                getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        return new File(storageDir,"profile.jpg");
+}
+
+    @Override
+    protected void onResume() {
+
+        File myFile = createImageFile();
+
+        if (myFile.exists()) {
+            ImageView imageView = findViewById(R.id.iconocamara);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(myFile.getAbsolutePath()));
+
+        }
+        super.onResume();
+    }
+
+
+
+
+
+
+//este es el onActitivity result donde una vez el usuario capturaba la imagne deseada el foco
+    //regresa  la priemra acittivyt ejecutando el onactitiviresult
+  //  @Override
+  //  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    //    super.onActivityResult(requestCode, resultCode, data);
+      //  if (requestCode == 100 && resultCode == RESULT_OK){
+        //    Bundle extras= data.getExtras();
+         //   Bitmap imageBitmap = (Bitmap) extras.get("data");
+           // ImageView mImageView = findViewById(R.id.iconocamara);
+ //           mImageView.setImageBitmap(imageBitmap);
+   //     }else if (requestCode == 100 && resultCode == RESULT_CANCELED) {
+     //       Toast.makeText(this, "no has exo nada", Toast.LENGTH_SHORT).show();
+       // }
+    //}
+
+
+
+
+    }
+
+
+
+
+
+
 
 
 
