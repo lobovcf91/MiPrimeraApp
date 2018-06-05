@@ -3,24 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
+    <ProgressBar
+        android:id="@+id/audioprogressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+       />
+
+
     <Button
         android:id="@+id/button10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="59dp"
-        android:layout_marginTop="119dp"
+        android:layout_below="@+id/audioprogressbar"
+        android:gravity="bottom"
         android:onClick="onPlayerplay"
-        android:text="play" />
+        android:text="play/pause" />
 
     <Button
         android:id="@+id/button11"
         android:layout_width="wrap_content"
+        android:layout_below="@+id/audioprogressbar"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/button10"
+        android:layout_toEndOf="@+id/button10"
         android:onClick="onPlayerpause"
-        android:layout_marginEnd="100dp"
-        android:text="pause" />
+        android:text="stop" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/button11"
+        />
+
+
 </RelativeLayout>
