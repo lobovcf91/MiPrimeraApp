@@ -14,7 +14,8 @@ public class GameModel {
 
     }
 
-    public GameModel(int id, String name, String description, String officialwebsiteurl, String icono, String background) {
+    public GameModel(int id, String name, String description, String officialwebsiteurl,
+                     String icono, String background) {
         this.id = id;
         this.name = name;
         this.description = description;

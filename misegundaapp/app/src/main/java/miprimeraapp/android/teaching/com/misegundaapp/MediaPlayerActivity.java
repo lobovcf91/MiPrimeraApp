@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
+
+import java.net.URL;
 
 
 public class MediaPlayerActivity extends AppCompatActivity {
@@ -38,12 +41,14 @@ public class MediaPlayerActivity extends AppCompatActivity {
  //       myMediaplayer.start();
     audioprogressbar = findViewById(R.id.audioprogressbar);
     webvideo = findViewById(R.id.videoView);
-    webvideo.setVideoURI(Uri.parse("http://img-9gag-fun.9cache.com/photo/aBxGoNN_460sv.mp4"));
+    // video de mi pc y poniendo enlace desde fuera
+    webvideo.setVideoURI(Uri.parse("android.resource://" + getPackageName()+ "/" + R.raw.video));
     webvideo.start();
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(webvideo);
         webvideo.setMediaController(mediaController);
 
+        
 
     }
     protected void onStart() {
@@ -69,7 +74,36 @@ public class MediaPlayerActivity extends AppCompatActivity {
 
     }
 
+    private class ContadorAsynctask extends AsyncTask<URL, Integer, Integer> {
 
+        Integer i = 0;
+
+        @Override
+        protected Integer doInBackground(URL... urls) {
+            try {
+
+
+
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+            protected void onProgressUpdate (Integer...values){
+                super.onProgressUpdate(values);
+            }
+
+            @Override
+            protected void onPostExecute (Integer integer){
+                super.onPostExecute(integer);
+            }
+        }
+    }
 
 
 
