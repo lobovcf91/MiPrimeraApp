@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
@@ -30,6 +31,8 @@ public class MediaPlayerActivity extends AppCompatActivity {
     };
     private Handler audioprogressbarhandler = new Handler();
     private VideoView webvideo;
+    private VideoView myVideoView;
+    private ProgressBar counterProgressBar;
 
 // String videoURL = "http://img-9gag-fun.9cache.com/photo/aBxGoNN_460sv.mp4";
 
@@ -48,7 +51,7 @@ public class MediaPlayerActivity extends AppCompatActivity {
         mediaController.setAnchorView(webvideo);
         webvideo.setMediaController(mediaController);
 
-        
+//        new ContadorAsynctask().execute();
 
     }
     protected void onStart() {
@@ -74,37 +77,47 @@ public class MediaPlayerActivity extends AppCompatActivity {
 
     }
 
+
+    //crear clase Aynctask
+
     private class ContadorAsynctask extends AsyncTask<URL, Integer, Integer> {
 
         Integer i = 0;
-
+// contador de 100
         @Override
         protected Integer doInBackground(URL... urls) {
-            try {
-
-
-
-                return null;
+            int count;
+            for(count = 0; count <= 100; count++) {
+                publishProgress(count);
+                try {
+                    Thread.sleep(100);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+            return 100;
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+//          counterProgressBar.setMax(100);
         }
 
         @Override
             protected void onProgressUpdate (Integer...values){
                 super.onProgressUpdate(values);
+            counterProgressBar.setProgress(values[0]);
             }
 
             @Override
             protected void onPostExecute (Integer integer){
                 super.onPostExecute(integer);
+                Log.d("AsyncTask", "onPostExecute: " + integer.toString());
             }
         }
     }
 
 
 
-}
+

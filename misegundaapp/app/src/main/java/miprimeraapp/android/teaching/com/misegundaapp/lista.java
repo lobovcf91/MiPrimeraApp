@@ -65,7 +65,7 @@ public class lista extends AppCompatActivity {
             obtenerUbicacion();
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[] {Manifest.permission.ACCESS_FINE_LOCATION} ,100);
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 100);
             //no tenemos permisos
         }
 
@@ -217,27 +217,28 @@ public class lista extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-       if (requestCode == 100);{
-           if (grantResults.length > 0
-                   && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-           {
-               //obetener permisos
-               obtenerUbicacion();
-               // el usuario acepta los permisos
-           } else {
-               //el usuario deniega los permisos
-           }
+        if (requestCode == 100) ;
+        {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //obetener permisos
+                obtenerUbicacion();
+                // el usuario acepta los permisos
+            } else {
+                //el usuario deniega los permisos
+            }
         }
     }
+
     @SuppressLint("MissingPermission")
-    private void obtenerUbicacion()  {
+    private void obtenerUbicacion() {
         LocationManager locationManager = (LocationManager)
                 getSystemService(Context.LOCATION_SERVICE);
         //2-crear el listener
         LocationListener listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                Log.d("Location Changed", "Location Changed"+ location.toString());
+                Log.d("Location Changed", "Location Changed" + location.toString());
             }
 
             @Override
@@ -258,7 +259,7 @@ public class lista extends AppCompatActivity {
 
         //3- escuchar las localizaciones
         locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER,0, 0, listener);
+                LocationManager.GPS_PROVIDER, 0, 0, listener);
     }
 }
 
